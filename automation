@@ -1,0 +1,70 @@
+alias: Dishwasher start
+description: >-
+  Start opvaskemaskinen, når strømmen er tændt, og lågen er lukket - Start the
+  dishwasher when the power is on and the door is closed
+trigger:
+  - platform: device
+    type: turned_on
+    device_id: 06a078c6074bd972b90d44ac9d7a68b6
+    entity_id: switch.opvaskemaskine_power
+    domain: switch
+    id: power-on
+  - platform: state
+    entity_id: binary_sensor.opvaskemaskine_door
+    to:
+      - "on"
+      - "off"
+condition:
+  - condition: device
+    type: is_on
+    device_id: 06a078c6074bd972b90d44ac9d7a68b6
+    entity_id: switch.opvaskemaskine_power
+    domain: switch
+action:
+  - if:
+      - type: is_open
+        condition: device
+        device_id: 06a078c6074bd972b90d44ac9d7a68b6
+        entity_id: binary_sensor.opvaskemaskine_door
+        domain: binary_sensor
+    then:
+      - service: tts.google_translate_say
+        data:
+          cache: false
+          entity_id: media_player.kitchen
+          message: Lågen skal lukkes ellers vil opvaskemaskinen ikke starte.
+    else:
+      - service: tts.google_translate_say
+        data:
+          cache: false
+          entity_id: media_player.kitchen
+          message: >-
+            Opvaskemaskine er tændt og lågen er lukket. Så er vi parat, og start
+            er planlagt til {{
+            ['Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag','Søndag'][strptime(state_attr('sensor.energinet_spotpriser',
+            'cheapest_double_hour'), '%Y-%m-%dT%H:%M:%S').weekday()] }} klokken
+            {{ strptime(state_attr('sensor.energinet_spotpriser',
+            'cheapest_double_hour'), '%Y-%m-%dT%H:%M:%S').strftime('%H:%M') }}.
+            Ønsker du at starte straks, så tryk start!
+      - service: notify.mobile_app_sm_g973f
+        data:
+          message: >-
+            Opvask er planlagt til {{
+            ['Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag','Søndag'][strptime(state_attr('sensor.energinet_spotpriser',
+            'cheapest_double_hour'), '%Y-%m-%dT%H:%M:%S').weekday()] }} kl. {{
+            strptime(state_attr('sensor.energinet_spotpriser',
+            'cheapest_double_hour'), '%Y-%m-%dT%H:%M:%S').strftime('%H:%M') }}.
+          title: Opvaskemaskine
+        enabled: false
+      - service: home_connect.start_program
+        data:
+          device_id: 06a078c6074bd972b90d44ac9d7a68b6
+          program: Dishcare.Dishwasher.Program.Eco50
+          key: BSH.Common.Option.StartInRelative
+          value: >-
+            {{ ((strptime(state_attr('sensor.energinet_spotpriser',
+            'cheapest_double_hour'), '%Y-%m-%dT%H:%M:%S') | as_timestamp) -
+            (now() | as_timestamp)) | int }}
+          unit: seconds
+        enabled: true
+mode: single
