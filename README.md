@@ -9,4 +9,4 @@ Forudsætning:
 
 Automatiseringer kører når der er tændt for strømmet og når låge er lukket. Så beregnes antal sekunder til starttidspunkt, og vaske-program vælges fra input_select: "opvaskemaskine_program:". På opvaskemaskinens display viser antal hele timer til start.
 
-Hvis du mangler opvaskemaskinens vaske-program-navne, så ligger de her: eller på Home Connect API docs: https://api-docs.home-connect.com/programs-and-options#dishwasher
+Hvis du mangler opvaskemaskinens vaske-program-navne, så ligger de her: https://github.com/MaximusClavius/dishwasher/blob/main/dishwasher%20programs eller på Home Connect API docs: https://api-docs.home-connect.com/programs-and-options#dishwasher
