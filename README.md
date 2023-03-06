@@ -2,7 +2,7 @@
 Automatisering af opvasker/Automation of dishwasher
 
 Forudsætning:
-- Opvaske- eller vaksemaskine er integreret i Home Connect i Home Assistant
+- Opvaske- eller vaskemaskine er integreret i Home Connect i Home Assistant
 - Remote Start og Control er enabled på maskinen
 - Et medie Frk. Goggle kan ævle fra/i
 - Billigste el-pris er givet via en sensor (min sensor indeholder billigste pris for en dobbelt-time)
@@ -12,7 +12,7 @@ Forudsætning:
 Automatiseringer kører når der er tændt for strømmet og når låge er lukket. Så beregnes antal sekunder til starttidspunkt, og vaske-program vælges fra input_select: "opvaskemaskine_program:". På opvaskemaskinens display viser antal hele timer til start.
 
 Hvis lågen ikke er lukket, så fortæller Frk. Google det ("Home Connect" er en cloud-løsning, så der kan forekomme nogle forsinkelser).
-Er alt ok, så fortæller Frk. Google det, og fortæller hvor opvaskemakinen starter, samt hvad alternativet er. Afbryd er at slukke for strømmen på kontakten på opvaskeren.
+Er alt ok, så fortæller Frk. Google det, og fortæller hvor opvaskemakinen starter, samt hvad alternativet er. Afbryd er at slukke for strømmen på kontakten på opvaskeren- eller vaskemaskinen.
 
 Fremgangsmåde:
 1) Lave input_select og tilføj den til dashboard, evt. med udgangspunkt i: https://github.com/MaximusClavius/dishwasher/blob/main/input_select
