@@ -2,8 +2,9 @@
 Automatisering af opvasker/Automation of dishwasher
 
 Forudsætning:
-- Opvaske- eller vaksemaskine er integreret i Home Connect i Home Assistant.
-- Remote Start og Control er enabled på maskinen.
+- Opvaske- eller vaksemaskine er integreret i Home Connect i Home Assistant
+- Remote Start og Control er enabled på maskinen
+- Et medie Frk. Goggle kan ævle fra/i
 - Billigste el-pris er givet via en sensor (min sensor indeholder billigste pris for en dobbelt-time)
 
 ![image](https://user-images.githubusercontent.com/103023823/223043170-354f9fc6-b945-4371-899b-570230649db8.png)
@@ -13,4 +14,10 @@ Automatiseringer kører når der er tændt for strømmet og når låge er lukket
 Hvis lågen ikke er lukket, så fortæller Frk. Google det ("Home Connect" er en cloud-løsning, så der kan forekomme nogle forsinkelser).
 Er alt ok, så fortæller Frk. Google det, og fortæller hvor opvaskemakinen starter, samt hvad alternativet er. Afbryd er at slukke for strømmen på kontakten på opvaskeren.
 
+Fremgangsmåde:
+1) Lave input_select og tilføj den til dashboard, evt. med udgangspunkt i: https://github.com/MaximusClavius/dishwasher/blob/main/input_select <br>
+2) Lave automatisering med dine tilpasninger, evt. med udgangspunkt i: https://github.com/MaximusClavius/dishwasher/blob/main/automation
+
 Hvis du mangler opvaskemaskinens vaske-program-navne, så ligger de her: https://github.com/MaximusClavius/dishwasher/blob/main/dishwasher%20programs eller på Home Connect API docs: https://api-docs.home-connect.com/programs-and-options#dishwasher
+
+<a href="https://www.paypal.com/donate/?hosted_button_id=NNUF56TVFMJXY"><img src="https://www.paypalobjects.com/da_DK/DK/i/btn/btn_donateCC_LG.gif" alt="Doner en skræv"></a>
