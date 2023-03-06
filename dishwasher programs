@@ -1,0 +1,96 @@
+https://api-docs.home-connect.com/programs-and-options?#dishwasher
+
+DishwasherCopied link to clipboard
+The following list contains all dishwasher programs, which are supported by the API. Please note that not all programs are supported for a specific dishwasher model. Therefore, we recommend to use the available program interface to check the program availability.
+
+Dishcare.Dishwasher.Program.PreRinse
+
+Rinsing of dishes in cold water without detergent.
+
+Dishcare.Dishwasher.Program.Auto1
+
+Automatically adjusted program sequence: cleaning and drying according to degree of soiling (sensor-optimized) of lightly soiled dishes with optimum consumption.
+
+Dishcare.Dishwasher.Program.Auto2
+
+Automatically adjusted program sequence: cleaning and drying according to degree of soiling (sensor-optimized) of normally soiled dishes with optimum consumption.
+
+Dishcare.Dishwasher.Program.Auto3
+
+Automatically adjusted program sequence: cleaning and drying according to degree of soiling (sensor-optimized) of highly soiled dishes with optimum consumption.
+
+Dishcare.Dishwasher.Program.Eco50
+
+Most economical rinsing program for cleaning and drying of normally soiled dishes for all rinsing situations with reduced water and energy consumption.
+
+Dishcare.Dishwasher.Program.Quick45
+
+Particularly quick cleaning of lightly soiled dishes within approx. half an hour.
+
+Dishcare.Dishwasher.Program.Intensiv70
+
+Special cleaning for highly soiled dishes, particularly for pots and pans.
+
+Dishcare.Dishwasher.Program.Normal65
+
+Cleaning for medium up to highly soiled dishes, particularly for mixed dishes.
+
+Dishcare.Dishwasher.Program.Glas40
+
+Gentle cleaning of sensitive dishes, e.g. high-quality glasses at lower temperatures. The drying phase is extended especially for extra gentle drying.
+
+Dishcare.Dishwasher.Program.GlassCare
+
+A cycle for lightly soiled dishes which is ideal for temperature sensitive dishes or silverware. It is especially helpful to reduce a cloudy or etched appearance on glasses.
+
+Dishcare.Dishwasher.Program.NightWash
+
+Particularly gentle cleaning and drying of normally soiled dishes.
+
+Dishcare.Dishwasher.Program.Quick65
+
+Particularly quick cleaning of normally soiled dishes.
+
+Dishcare.Dishwasher.Program.Normal45
+
+Recommended for daily, regular or typical use to completely wash a full load of normally soiled dishes.
+
+Dishcare.Dishwasher.Program.Intensiv45
+
+Intensive and economical program for heavily soiled dishes, pots, glasses.
+
+Dishcare.Dishwasher.Program.AutoHalfLoad
+
+Reduced water consumption when washing small, lightly soiled loads.
+
+Dishcare.Dishwasher.Program.IntensivPower
+
+Special cleaning for dishes with heavy or burnt-in soiling, particularly for pots and pans.
+
+Dishcare.Dishwasher.Program.MagicDaily
+
+Time-optimised with intensive cleaning and drying for daily use.
+
+Dishcare.Dishwasher.Program.Super60
+
+Maximum cleaning and drying performance for highly soiled dishes.
+
+Dishcare.Dishwasher.Program.Kurz60
+
+Time-optimised, for normally soiled dishes.
+
+Dishcare.Dishwasher.Program.ExpressSparkle65
+
+Special cleaning for dishes with very heavy and burnt-in soiling, particularly for pots and pans.
+
+Dishcare.Dishwasher.Program.MachineCare
+
+Machine cleaning cycle. Without dishes, using machine cleaning detergent.
+
+Dishcare.Dishwasher.Program.SteamFresh
+
+Rinsing and hygienic drying.
+
+Dishcare.Dishwasher.Program.MaximumCleaning
+
+Special cleaning for heavily soiled, greasy dishes, particularly for pots and pans.
