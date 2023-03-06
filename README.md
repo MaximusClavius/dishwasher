@@ -1,4 +1,4 @@
-# dishwasher
+# dishwasher/opvasker
 Automatisering af opvasker/Automation of dishwasher
 
 Forudsætning:
