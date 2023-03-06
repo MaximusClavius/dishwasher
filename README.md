@@ -15,8 +15,11 @@ Hvis lågen ikke er lukket, så fortæller Frk. Google det ("Home Connect" er en
 Er alt ok, så fortæller Frk. Google det, og fortæller hvor opvaskemakinen starter, samt hvad alternativet er. Afbryd er at slukke for strømmen på kontakten på opvaskeren.
 
 Fremgangsmåde:
-1) Lave input_select og tilføj den til dashboard, evt. med udgangspunkt i: https://github.com/MaximusClavius/dishwasher/blob/main/input_select <br>
+1) Lave input_select og tilføj den til dashboard, evt. med udgangspunkt i: https://github.com/MaximusClavius/dishwasher/blob/main/input_select
 2) Lave automatisering med dine tilpasninger, evt. med udgangspunkt i: https://github.com/MaximusClavius/dishwasher/blob/main/automation
+
+PS<br>
+I automationen er vist hvorledes man sender en besked til mobiltelefonen via servicen: notify, dog er den disabled (enabled: false)
 
 Hvis du mangler opvaskemaskinens vaske-program-navne, så ligger de her: https://github.com/MaximusClavius/dishwasher/blob/main/dishwasher%20programs eller på Home Connect API docs: https://api-docs.home-connect.com/programs-and-options#dishwasher
 
