@@ -56,27 +56,17 @@ action:
         data:
           device_id: 06a078c6074bd972b90d44ac9d7a68b6
           program: >-
-            {% if is_state("input_select.opvaskemaskine_program", "Program Auto1") %}Dishcare.Dishwasher.Program.Auto1
-            {% elif is_state("input_select.opvaskemaskine_program", "Program Auto2") %}Dishcare.Dishwasher.Program.Auto2
-            {% elif is_state("input_select.opvaskemaskine_program", "Program Auto3") %}Dishcare.Dishwasher.Program.Auto3
-            {% elif is_state("input_select.opvaskemaskine_program", "Program AutoHalfLoad") %}Dishcare.Dishwasher.Program.AutoHalfLoad
+            {% if is_state("input_select.opvaskemaskine_program", "Program Auto2") %}Dishcare.Dishwasher.Program.Auto2
             {% elif is_state("input_select.opvaskemaskine_program", "Program Eco50") %}Dishcare.Dishwasher.Program.Eco50
-            {% elif is_state("input_select.opvaskemaskine_program", "Program ExpressSparkle65") %}Dishcare.Dishwasher.Program.ExpressSparkle65
             {% elif is_state("input_select.opvaskemaskine_program", "Program Glas40") %}Dishcare.Dishwasher.Program.Glas40
-            {% elif is_state("input_select.opvaskemaskine_program", "Program GlassCare") %}Dishcare.Dishwasher.Program.GlassCare
-            {% elif is_state("input_select.opvaskemaskine_program", "Program Intensiv45") %}Dishcare.Dishwasher.Program.Intensiv45
             {% elif is_state("input_select.opvaskemaskine_program", "Program Intensiv70") %}Dishcare.Dishwasher.Program.Intensiv70
             {% elif is_state("input_select.opvaskemaskine_program", "Program IntensivPower") %}Dishcare.Dishwasher.Program.IntensivPower
             {% elif is_state("input_select.opvaskemaskine_program", "Program Kurz60") %}Dishcare.Dishwasher.Program.Kurz60
-            {% elif is_state("input_select.opvaskemaskine_program", "Program MagicDaily") %}Dishcare.Dishwasher.Program.MagicDaily
-            {% elif is_state("input_select.opvaskemaskine_program", "Program MaximumCleaning") %}Dishcare.Dishwasher.Program.MaximumCleaning
+            {% elif is_state("input_select.opvaskemaskine_program", "Program MaximumCleaning") %}Dishcare.Dishwasher.Program.MixedLoad
             {% elif is_state("input_select.opvaskemaskine_program", "Program NightWash") %}Dishcare.Dishwasher.Program.NightWash
-            {% elif is_state("input_select.opvaskemaskine_program", "Program Normal45") %}Dishcare.Dishwasher.Program.Normal45
-            {% elif is_state("input_select.opvaskemaskine_program", "Program Normal65") %}Dishcare.Dishwasher.Program.Normal65
             {% elif is_state("input_select.opvaskemaskine_program", "Program PreRinse") %}Dishcare.Dishwasher.Program.PreRinse
             {% elif is_state("input_select.opvaskemaskine_program", "Program Quick45") %}Dishcare.Dishwasher.Program.Quick45
             {% elif is_state("input_select.opvaskemaskine_program", "Program Quick65") %}Dishcare.Dishwasher.Program.Quick65
-            {% elif is_state("input_select.opvaskemaskine_program", "Program SteamFresh") %}Dishcare.Dishwasher.Program.SteamFresh
             {% elif is_state("input_select.opvaskemaskine_program", "Program Super60") %}Dishcare.Dishwasher.Program.Super60
             {% elif is_state("input_select.opvaskemaskine_program", "Program MachineCare") %}Dishcare.Dishwasher.Program.MachineCare
             {% endif %}
