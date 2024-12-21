@@ -3,11 +3,11 @@ Automatisering af opvasker/Automation of dishwasher
 
 <p><strong>Bemærk:</strong> Der er kommet nye programmer til opvaskeren som kan downloades via Home Connect appen. Yderligere er der kommet en sensor til salt (sensor.opvaskemaskine_salt_nearly_empty) og afspænding (sensor.opvaskemaskine_rinse_aid_nearly_empty).</p>
 
-Forudsætning:
+<p><strong>Forudsætning:</strong>
 - Opvaske- eller vaskemaskine er integreret i Home Connect i Home Assistant
 - Remote Start og Control er enabled på maskinen
 - Et medie Frk. Goggle kan ævle fra/i
-- Billigste el-pris er givet via en sensor (min sensor indeholder billigste pris for en dobbelt-time)
+- Billigste el-pris er givet via en sensor (min sensor indeholder billigste pris for en dobbelt-time)</p>
 
 ![image](https://user-images.githubusercontent.com/103023823/223043170-354f9fc6-b945-4371-899b-570230649db8.png)
 
