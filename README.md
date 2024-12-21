@@ -1,6 +1,8 @@
 # dishwasher/opvasker
 Automatisering af opvasker/Automation of dishwasher
 
+Bemærk: Der er kommet nye programmer til opvaskeren som kan downloades via Home Connect appen. Yderligere er der kommet en sensor til salt og afspænding.
+
 Forudsætning:
 - Opvaske- eller vaskemaskine er integreret i Home Connect i Home Assistant
 - Remote Start og Control er enabled på maskinen
