@@ -2,27 +2,17 @@ input_select:
   opvaskemaskine_program:
     name: "Vælg vaske-program:"
     options:
-      - Program Auto1
       - Program Auto2
-      - Program Auto3
-      - Program AutoHalfLoad
       - Program Eco50
-      - Program ExpressSparkle65
       - Program Glas40
-      - Program GlassCare
-      - Program Intensiv45
       - Program Intensiv70
       - Program IntensivPower
       - Program Kurz60
-      - Program MagicDaily
-      - Program MaximumCleaning
+      - Program MixedLoad
       - Program NightWash
-      - Program Normal45
-      - Program Normal65
       - Program PreRinse
       - Program Quick45
       - Program Quick65
-      - Program SteamFresh
       - Program Super60
       - Program MachineCare
     initial: Program Eco50
