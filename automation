@@ -1,78 +1,129 @@
-alias: Dishwasher start
-description: >-
-  Start opvaskemaskinen, når strømmen er tændt, og lågen er lukket - Start the
-  dishwasher when the power is on and the door is closed
-trigger:
-  - platform: device
+- id: '1677824843901'
+  alias: Dishwasher start
+  description: Start opvaskemaskinen, når strømmen er tændt, og lågen er lukket -
+    Start the dishwasher when the power is on and the door is closed
+  triggers:
+  - trigger: device
     type: turned_on
     device_id: 06a078c6074bd972b90d44ac9d7a68b6
     entity_id: switch.opvaskemaskine_power
     domain: switch
     id: power-on
-  - platform: state
-    entity_id: binary_sensor.opvaskemaskine_door
-    to:
-      - "on"
-      - "off"
-condition:
+  - trigger: state
+    entity_id:
+    - sensor.opvaskemaskine_door
+    to: open
+    from: closed
+  - trigger: state
+    entity_id:
+    - sensor.opvaskemaskine_door
+    to: closed
+    from: open
+  conditions:
   - condition: device
     type: is_on
     device_id: 06a078c6074bd972b90d44ac9d7a68b6
     entity_id: switch.opvaskemaskine_power
     domain: switch
-action:
+  actions:
   - if:
-      - type: is_open
-        condition: device
-        device_id: 06a078c6074bd972b90d44ac9d7a68b6
-        entity_id: binary_sensor.opvaskemaskine_door
-        domain: binary_sensor
+    - condition: state
+      entity_id: sensor.opvaskemaskine_door
+      state: open
     then:
-      - service: tts.google_translate_say
-        data:
-          cache: false
-          entity_id: media_player.kitchen
-          message: Lågen skal lukkes ellers vil opvaskemaskinen ikke starte.
+    - action: tts.google_translate_say
+      data:
+        cache: false
+        entity_id: media_player.kitchen
+        message: Lågen skal lukkes ellers vil opvaskemaskinen ikke starte.
     else:
-      - service: tts.google_translate_say
-        data:
-          cache: false
-          entity_id: media_player.kitchen
-          message: >-
-            Opvaskemaskine er tændt og lågen er lukket. Så er vi parat, og start
-            er planlagt til {{
-            ['Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag','Søndag'][strptime(state_attr('sensor.energinet_spotpriser', 'cheapest_double_hour'), '%Y-%m-%dT%H:%M:%S').weekday()] }} klokken
-            {{ strptime(state_attr('sensor.energinet_spotpriser', 'cheapest_double_hour'), '%Y-%m-%dT%H:%M:%S').strftime('%H:%M') }}.
-            Ønsker du at starte straks, så tryk start!
-      - service: notify.mobile_app_sm_g973f
-        data:
-          message: >-
-            Opvask er planlagt til {{
-            ['Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag','Søndag'][strptime(state_attr('sensor.energinet_spotpriser', 'cheapest_double_hour'), '%Y-%m-%dT%H:%M:%S').weekday()] }} kl. 
-            {{ strptime(state_attr('sensor.energinet_spotpriser', 'cheapest_double_hour'), '%Y-%m-%dT%H:%M:%S').strftime('%H:%M') }}.
-          title: Opvaskemaskine
-        enabled: false
-      - service: home_connect.start_program
-        data:
-          device_id: 06a078c6074bd972b90d44ac9d7a68b6
-          program: >-
-            {% if is_state("input_select.opvaskemaskine_program", "Program Auto2") %}Dishcare.Dishwasher.Program.Auto2
-            {% elif is_state("input_select.opvaskemaskine_program", "Program Eco50") %}Dishcare.Dishwasher.Program.Eco50
-            {% elif is_state("input_select.opvaskemaskine_program", "Program Glas40") %}Dishcare.Dishwasher.Program.Glas40
-            {% elif is_state("input_select.opvaskemaskine_program", "Program Intensiv70") %}Dishcare.Dishwasher.Program.Intensiv70
-            {% elif is_state("input_select.opvaskemaskine_program", "Program IntensivPower") %}Dishcare.Dishwasher.Program.IntensivPower
-            {% elif is_state("input_select.opvaskemaskine_program", "Program Kurz60") %}Dishcare.Dishwasher.Program.Kurz60
-            {% elif is_state("input_select.opvaskemaskine_program", "Program MaximumCleaning") %}Dishcare.Dishwasher.Program.MixedLoad
-            {% elif is_state("input_select.opvaskemaskine_program", "Program NightWash") %}Dishcare.Dishwasher.Program.NightWash
-            {% elif is_state("input_select.opvaskemaskine_program", "Program PreRinse") %}Dishcare.Dishwasher.Program.PreRinse
-            {% elif is_state("input_select.opvaskemaskine_program", "Program Quick45") %}Dishcare.Dishwasher.Program.Quick45
-            {% elif is_state("input_select.opvaskemaskine_program", "Program Quick65") %}Dishcare.Dishwasher.Program.Quick65
-            {% elif is_state("input_select.opvaskemaskine_program", "Program Super60") %}Dishcare.Dishwasher.Program.Super60
-            {% elif is_state("input_select.opvaskemaskine_program", "Program MachineCare") %}Dishcare.Dishwasher.Program.MachineCare
-            {% endif %}
-          key: BSH.Common.Option.StartInRelative
-          value: >-
+    - action: tts.google_translate_say
+      data:
+        cache: false
+        entity_id: media_player.kitchen
+        message: Opvaskemaskine er tændt og lågen er lukket. Så er vi parat, og start
+          er planlagt til {{ ['Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag','Søndag'][strptime(state_attr('sensor.energinet_spotpriser',
+          'cheapest_double_hour'), '%Y-%m-%dT%H:%M:%S').weekday()] }} klokken {% if
+          is_state("input_select.opvaskemaskine_program", "Program Eco50") %} {{ strptime(state_attr('sensor.energinet_spotpriser',
+          'cheapest_fivefold_hour'), '%Y-%m-%dT%H:%M:%S').strftime('%H:%M') }} {%
+          else %} {{ strptime(state_attr('sensor.energinet_spotpriser', 'cheapest_double_hour'),
+          '%Y-%m-%dT%H:%M:%S').strftime('%H:%M') }} {% endif %}. Ønsker du at starte
+          straks, så sæt uret/udsat start til 0 og tryk derefter start!
+    - action: notify.mobile_app_pixel_9
+      data:
+        message: Opvask er planlagt til {{ ['Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag','Søndag'][strptime(state_attr('sensor.energinet_spotpriser',
+          'cheapest_double_hour'), '%Y-%m-%dT%H:%M:%S').weekday()] }} kl. {% if is_state("input_select.opvaskemaskine_program",
+          "Program Eco50") %} {{ strptime(state_attr('sensor.energinet_spotpriser',
+          'cheapest_fivefold_hour'), '%Y-%m-%dT%H:%M:%S').strftime('%H:%M') }} {%
+          else %} {{ strptime(state_attr('sensor.energinet_spotpriser', 'cheapest_double_hour'),
+          '%Y-%m-%dT%H:%M:%S').strftime('%H:%M') }} {% endif %}.
+        title: Opvaskemaskine
+      enabled: false
+    - action: home_connect.start_program
+      data:
+        device_id: 06a078c6074bd972b90d44ac9d7a68b6
+        program: '
+          {% if is_state("input_select.opvaskemaskine_program", "Program Auto2") %}dishcare_dishwasher_program_auto_2
+          {% elif is_state("input_select.opvaskemaskine_program", "Program Eco50") %}dishcare_dishwasher_program_eco_50
+          {% elif is_state("input_select.opvaskemaskine_program", "Program Glas40") %}dishcare_dishwasher_program_glas_40
+          {% elif is_state("input_select.opvaskemaskine_program", "Program Intensiv70") %}dishcare_dishwasher_program_intensiv_70
+          {% elif is_state("input_select.opvaskemaskine_program", "Program IntensivPower") %}dishcare_dishwasher_program_intensiv_power
+          {% elif is_state("input_select.opvaskemaskine_program", "Program Kurz60") %}dishcare_dishwasher_program_kurz_60 
+          {% elif is_state("input_select.opvaskemaskine_program", "Program MaximumCleaning") %}dishcare_dishwasher_program_mixed_load 
+          {% elif is_state("input_select.opvaskemaskine_program", "Program PreRinse") %}dishcare_dishwasher_program_pre_rinse
+          {% elif is_state("input_select.opvaskemaskine_program", "Program Quick45") %}dishcare_dishwasher_program_quick_45 
+          {% elif is_state("input_select.opvaskemaskine_program", "Program Quick65") %}dishcare_dishwasher_program_quick_65 
+          {% elif is_state("input_select.opvaskemaskine_program", "Program Super60") %}dishcare_dishwasher_program_super_60 
+          {% elif is_state("input_select.opvaskemaskine_program", "Program MachineCare") %}dishcare_dishwasher_program_machine_care 
+          {% endif %}
+          '
+        key: BSH.Common.Option.StartInRelative
+        value: "
+          {% if is_state('input_select.opvaskemaskine_program', 'Program PreRinse') %}
+            {{ ((strptime(state_attr('sensor.energinet_spotpriser', 'cheapest_single_hour'), '%Y-%m-%dT%H:%M:%S') | as_timestamp) - (now() | as_timestamp)) | int }}
+          {% elif is_state('input_select.opvaskemaskine_program', 'Program Quick45') %}
+            {{ ((strptime(state_attr('sensor.energinet_spotpriser', 'cheapest_single_hour'), '%Y-%m-%dT%H:%M:%S') | as_timestamp) - (now() | as_timestamp)) | int }}
+          {% elif is_state('input_select.opvaskemaskine_program', 'Program Quick65') %}
+            {{ ((strptime(state_attr('sensor.energinet_spotpriser', 'cheapest_single_hour'), '%Y-%m-%dT%H:%M:%S') | as_timestamp) - (now() | as_timestamp)) | int }}
+          {% elif is_state('input_select.opvaskemaskine_program', 'Program Eco50') %}
+            {{ ((strptime(state_attr('sensor.energinet_spotpriser', 'cheapest_fivefold_hour'), '%Y-%m-%dT%H:%M:%S') | as_timestamp) - (now() | as_timestamp)) | int }}
+          {% else %}
             {{ ((strptime(state_attr('sensor.energinet_spotpriser', 'cheapest_double_hour'), '%Y-%m-%dT%H:%M:%S') | as_timestamp) - (now() | as_timestamp)) | int }}
-          unit: seconds
-        enabled: true
-mode: single
+          {% endif %}
+          "
+        unit: seconds
+      enabled: false
+    - action: home_connect.set_program_and_options
+      data:
+        device_id: 06a078c6074bd972b90d44ac9d7a68b6
+        affects_to: active_program
+        program: '            
+            {% if is_state("input_select.opvaskemaskine_program", "Program Auto2") %}dishcare_dishwasher_program_auto_2
+            {% elif is_state("input_select.opvaskemaskine_program", "Program Eco50") %}dishcare_dishwasher_program_eco_50
+            {% elif is_state("input_select.opvaskemaskine_program", "Program Glas40") %}dishcare_dishwasher_program_glas_40
+            {% elif is_state("input_select.opvaskemaskine_program", "Program Intensiv70") %}dishcare_dishwasher_program_intensiv_70
+            {% elif is_state("input_select.opvaskemaskine_program", "Program IntensivPower") %}dishcare_dishwasher_program_intensiv_power
+            {% elif is_state("input_select.opvaskemaskine_program", "Program Kurz60") %}dishcare_dishwasher_program_kurz_60
+            {% elif is_state("input_select.opvaskemaskine_program", "Program MaximumCleaning") %}dishcare_dishwasher_program_mixed_load
+            {% elif is_state("input_select.opvaskemaskine_program", "Program PreRinse") %}dishcare_dishwasher_program_pre_rinse
+            {% elif is_state("input_select.opvaskemaskine_program", "Program Quick45") %}dishcare_dishwasher_program_quick_45
+            {% elif is_state("input_select.opvaskemaskine_program", "Program Quick65") %}dishcare_dishwasher_program_quick_65
+            {% elif is_state("input_select.opvaskemaskine_program", "Program Super60") %}dishcare_dishwasher_program_super_60
+            {% elif is_state("input_select.opvaskemaskine_program", "Program MachineCare") %}dishcare_dishwasher_program_machine_care
+            {% endif %}
+            '
+        b_s_h_common_option_start_in_relative: "
+            {% if is_state('input_select.opvaskemaskine_program', 'Program PreRinse') %}
+              {{ ((strptime(state_attr('sensor.energinet_spotpriser', 'cheapest_single_hour'), '%Y-%m-%dT%H:%M:%S') | as_timestamp) - (now() | as_timestamp)) | int }}
+            {% elif is_state('input_select.opvaskemaskine_program', 'Program Quick45') %}
+              {{ ((strptime(state_attr('sensor.energinet_spotpriser', 'cheapest_single_hour'), '%Y-%m-%dT%H:%M:%S') | as_timestamp) - (now() | as_timestamp)) | int }}
+            {% elif is_state('input_select.opvaskemaskine_program', 'Program Quick65') %}
+              {{ ((strptime(state_attr('sensor.energinet_spotpriser', 'cheapest_single_hour'), '%Y-%m-%dT%H:%M:%S') | as_timestamp) - (now() | as_timestamp)) | int }}
+            {% elif is_state('input_select.opvaskemaskine_program', 'Program Eco50') %}
+              {{ ((strptime(state_attr('sensor.energinet_spotpriser', 'cheapest_fivefold_hour'), '%Y-%m-%dT%H:%M:%S') | as_timestamp) - (now() | as_timestamp)) | int }}
+            {% else %}
+              {{ ((strptime(state_attr('sensor.energinet_spotpriser', 'cheapest_double_hour'), '%Y-%m-%dT%H:%M:%S') | as_timestamp) - (now() | as_timestamp)) | int }}
+            {% endif %}
+            "
+      enabled: true
+  mode: restart
